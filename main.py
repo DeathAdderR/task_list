@@ -2,8 +2,6 @@
 import sqlite3
 import os
 
-# db_path = os.path.join(os.path.dirname(__file__), "../db/task_tracker.db")
-
 class TaskList:
     def __init__(self):
         self.connection = sqlite3.connect('task_tracker.db', check_same_thread=False)
@@ -38,3 +36,4 @@ class TaskList:
     def close_connection(self):
         self.connection.close()
         print("connection to task_tracker terminated")
+
