@@ -4,10 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Task Tracker</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='frontend/styles.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css')}}">
 </head>
 <body id="main-page">
     <div id="input-container">
+        <form id="mark-complete">
+            <label for="mark-complete">Task to mark complete:</label>
+            <input type="text" id="task-id" name="task_id" required>
+            <button type="submit">Mark as Complete</button>
+        </form>
         <form id="task-form">
             <label for="task_name">Task:</label>
             <input type="text" id="task_name" name="task_name" required>
@@ -19,6 +24,6 @@
     <div id="task-tracker-container">
         <div id="task-list"></div>
     </div>
-    <script src="{{url_for('static', filename='frontend/script.js')}}"></script>
+    <script src="{{url_for('static', filename='js/script.js')}}"></script>
 </body>
 </html>

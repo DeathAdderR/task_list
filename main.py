@@ -2,11 +2,11 @@
 import sqlite3
 import os
 
-db_path = os.path.join(os.path.dirname(__file__), "../db/task_tracker.db")
+# db_path = os.path.join(os.path.dirname(__file__), "../db/task_tracker.db")
 
 class TaskList:
     def __init__(self):
-        self.connection = sqlite3.connect(db_path)
+        self.connection = sqlite3.connect('task_tracker.db', check_same_thread=False)
         self.cursor = self.connection.cursor()
         self._initialize_database()
 
@@ -20,16 +20,20 @@ class TaskList:
 
     def execute_query(self, query, data=None):
         
-        if not data:
-            try:
-                self.cursor.execute(query)
-            except sqlite3.IntegrityError:
-                print(f"SQL error!\nQuery: {query}")
-        else:
-            try:
+        try:
+            if data:
                 self.cursor.execute(query, data)
-            except sqlite3.IntegrityError:
-                print(f"SQL error!\nQuery: {query}\nData: {data}")
+            else:
+                self.cursor.execute(query)
+
+            if query.strip().lower().startswith('select'):
+                return self.cursor.fetchall()
+            else:
+                self.connection.commit()
+                return None
+        except sqlite3.IntegrityError as e:
+            print(f"SQL ERROR!\nQuery: {query}\nData: {data if data else ''}\nError: {e}")
+        
 
     def close_connection(self):
         self.connection.close()
