@@ -21,7 +21,7 @@ def add_task():
 
     db.execute_query('''INSERT INTO task_tracker (task_name, due_date) VALUES (?,?)''', (task_name, due_date))
     tasks = db.execute_query('''SELECT * FROM task_tracker''')
-    print(tasks)
+    # print(tasks)
     return jsonify({"message": "Task successfully added"}), 200
 
 
@@ -41,7 +41,7 @@ def mark_task_complete():
 @app.route('/get_tasks', methods=['GET'])
 def get_tasks():
     tasks = db.execute_query('''SELECT * FROM task_tracker''')
-    print(tasks)
+    # print(tasks)
     if tasks:
         return jsonify(tasks), 200
     else:
