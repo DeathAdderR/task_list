@@ -1,7 +1,7 @@
 
 async function markTaskComplete(event) {
     event.preventDefault()
-    console.log(event)
+    // console.log(event)
     const taskId = event.target.task_id.value;
 
     if (!taskId) {
