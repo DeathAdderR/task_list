@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Tracker</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='frontend/styles.css')}}">
+</head>
+<body id="main-page">
+    <div id="input-container">
+        <form id="task-form">
+            <label for="task_name">Task:</label>
+            <input type="text" id="task_name" name="task_name" required>
+            <label for="due_date">Due Date:</label>
+            <input type="text" id="due_date" name="due_date" required>
+            <button type="submit">Add Task</button>
+        </form>
+    </div>
+    <div id="task-tracker-container">
+        <div id="task-list"></div>
+    </div>
+    <script src="{{url_for('static', filename='frontend/script.js')}}"></script>
+</body>
+</html>
